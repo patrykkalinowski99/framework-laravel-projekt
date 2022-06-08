@@ -20,8 +20,11 @@
         <td><a class="btn btn-secondary"href="/destroy/{{$item->id}}">X</a></td>
         @php ($i++)
       </tr>
-      @endforeach     
+      @endforeach   
     </tbody> 
   @endforeach
+  <form action="{{ route('storeorder') }}">
+    <button type="sumbit">Zamowienie</button>  
+</form>
   </table>
 @endsection

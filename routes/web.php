@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,4 @@ Route::group(['middleware' => 'roles', 'roles' => ['admin', 'moderator']], funct
     Route::get('/destroyproduct/{id}', [ProductsController::class, 'destroy'])->name('destroyproduct');
     Route::get('/destroyuser/{id}', [AdminController::class, 'destroyuser'])->name('destroyuser');
 });
+Route::get('/storeorder', [OrdersController::class, 'store'])->name('storeorder');
