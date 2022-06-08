@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Cart;
+use App\Models\Product;
 use App\Models\OrderProducts;
 
 class OrdersController extends Controller
@@ -51,6 +52,13 @@ class OrdersController extends Controller
                 $order_products->order_id = $order_id;
                 $order_products->product_id = $cart->product_id;
                 $order_products->save();
+
+                $product = Product::find($cart->product_id);
+                if($product->count > 0){
+                    $product->count -= 1;
+                    $product->save();
+                }
+
                 Cart::destroy($cart->id);
             }
             return redirect()->back();
